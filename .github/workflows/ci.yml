@@ -24,10 +24,10 @@ jobs:
           cache: pip
 
       - name: Install dependencies
-        run: pip install -r requirements-dev.txt
+        run: pip install -q -r requirements-dev.txt
 
       - name: Compile Python sources
         run: python -m compileall -q app.py excel_ai tests
 
       - name: Run tests
-        run: pytest -q
+        run: pytest -vv --tb=short
