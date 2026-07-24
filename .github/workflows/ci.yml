@@ -30,4 +30,23 @@ jobs:
         run: python -m compileall -q app.py excel_ai tests
 
       - name: Run tests
-        run: pytest -vv --tb=short
+        id: tests
+        shell: bash
+        run: |
+          set +e
+          pytest -vv --tb=short > pytest.log 2>&1
+          exit_code=$?
+          cat pytest.log
+          echo "exit_code=${exit_code}" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pytest-report
+          path: pytest.log
+
+      - name: Fail when tests fail
+        if: steps.tests.outputs.exit_code != '0'
+        run: exit 1
