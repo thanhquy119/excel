@@ -24,7 +24,7 @@ def workbook_bytes(title: str, headers: list[str], rows: list[list[object]]) -> 
 def test_app_starts_without_upload():
     app = AppTest.from_file("app.py", default_timeout=15).run()
     assert not app.exception
-    assert app.title[0].value == "Excel Thuế Trợ Lý"
+    assert len(app.file_uploader) == 1
 
 
 def test_schema_sent_to_ai_contains_no_cell_values():
