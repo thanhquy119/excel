@@ -1,6 +1,7 @@
 from io import BytesIO
 
 from openpyxl import Workbook, load_workbook
+from streamlit.testing.v1 import AppTest
 
 from excel_ai.models import Action, NormalizationOptions, OperationPlan
 from excel_ai.operations import execute_plan, normalize_value
@@ -18,6 +19,12 @@ def workbook_bytes(title: str, headers: list[str], rows: list[list[object]]) -> 
     workbook.save(buffer)
     workbook.close()
     return buffer.getvalue()
+
+
+def test_app_starts_without_upload():
+    app = AppTest.from_file("app.py", default_timeout=15).run()
+    assert not app.exception
+    assert app.title[0].value == "Excel Thuế Trợ Lý"
 
 
 def test_schema_sent_to_ai_contains_no_cell_values():
