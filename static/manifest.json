@@ -1,0 +1,20 @@
+{
+  "name": "Excel Thuế Trợ Lý",
+  "short_name": "Excel Thuế",
+  "description": "Đối chiếu, tìm trùng và đánh dấu dữ liệu Excel bằng giao diện tiếng Việt.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#0f766e",
+  "lang": "vi-VN",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/app/static/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
